@@ -18,7 +18,7 @@ include '../dao/ClientDAO.php'
 
     <div id="top-section">
         <a href="../index.php"><button>Retour à l'acceuil</button></a>
-        <a href=""><button>Ajouter un Client</button></a>
+        <a href="./Ajout_Client.php"><button>Ajouter un Client</button></a>
     </div>
 
     <div id="tableau">
@@ -36,7 +36,7 @@ include '../dao/ClientDAO.php'
 
             <?php
                 $clientDAO = new ClientDAO();
-                $lesClients = $clientDAO->getToutLesClients();
+                $lesClients = $clientDAO->afficherTous();
 
 
                 foreach ($lesClients as $unClient) {
@@ -50,7 +50,7 @@ include '../dao/ClientDAO.php'
                     echo "<td>" . $unClient->getAdresseVille() . "</td>";
                     echo "<td>
                             <a href='Modifier_Client.php?id=" . $unClient->getId() . "'><button>Modifier</button></a>
-                            <a href='Supprimer_Client.php?id=" . $unClient->getId() . "'><button>Supprimer</button></a>
+                            <a href='../supprimerClient.php?id=" . $unClient->getId() . "'><button>Supprimer</button></a>
                         </td>";
                     echo "</tr>";
                 }
