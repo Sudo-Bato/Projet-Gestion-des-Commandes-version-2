@@ -14,13 +14,20 @@ class ClientDAO {
 
     // récup les clients et les mettre dans un tableau
     public function afficherTous(): array {
-        $req = "SELECT * FROM clients ORDER BY id ASC";
+        
+        $req = "SELECT * FROM clients ORDER BY id ASC"; // id asc pr les mettre en ordre de l'id
         $stmt = $this->conn->prepare($req);
+
+        // executer la requete
         $stmt->execute();
 
+        // tableau des clients 
         $clients = [];
 
+        // récupération des données de la requette sql 
         $lignes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // pour chaques lignes récupéré, on fait un client et on met ses valeurs dedans
         foreach ($lignes as $laLigne) {
             $client = new Client();
             $client->setId($laLigne['id']);
@@ -30,6 +37,8 @@ class ClientDAO {
             $client->setAdresseRue($laLigne['adresse_rue']);
             $client->setAdresseCp($laLigne['adresse_cp']);
             $client->setAdresseVille($laLigne['adresse_ville']);
+
+            // ajouter l'objet client dans le tableau
             $clients[] = $client;
         }
 
@@ -46,6 +55,7 @@ class ClientDAO {
 
         $req = $this->conn->prepare($sql);
 
+        // lier chaques valeurs du client aux paramètre de la requete préparé
         $req->bindValue(':nom', $unClient->getNom());
         $req->bindValue(':email', $unClient->getEmail());
         $req->bindValue(':telephone', $unClient->getTelephone());
@@ -60,16 +70,21 @@ class ClientDAO {
 
     // fonction pour supprimer un client
     public function delete($id) {
+
+        // requete pour suprrimer le client par rapport a son id
         $sql = 'DELETE FROM clients WHERE id=?';
 
         $req = $this->conn->prepare($sql);
 
+        // executer la req avec l'id 
         $req->execute([$id]);
 
     }
 
     // fonction pour modifier un client
     public function update(Client $unClient): void {
+
+        // mettre a jout le client en fonction de son id (en sql)
         $sql = 'UPDATE clients 
                 SET nom = :nom, email = :email, telephone = :telephone,
                     adresse_rue = :adresse_rue, adresse_cp = :adresse_cp, adresse_ville = :adresse_ville
@@ -77,12 +92,15 @@ class ClientDAO {
 
         $req = $this->conn->prepare($sql);
 
+        // lier les valeurs du client a la requete préparé
         $req->bindValue(':nom', $unClient->getNom());
         $req->bindValue(':email', $unClient->getEmail());
         $req->bindValue(':telephone', $unClient->getTelephone());
         $req->bindValue(':adresse_rue', $unClient->getAdresseRue());
         $req->bindValue(':adresse_cp', $unClient->getAdresseCp());
         $req->bindValue(':adresse_ville', $unClient->getAdresseVille());
+
+        // l'id du client qu'on veut modifier
         $req->bindValue(':id', $unClient->getId());
 
         $req->execute();

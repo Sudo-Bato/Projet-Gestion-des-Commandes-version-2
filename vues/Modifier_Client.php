@@ -1,32 +1,47 @@
 <?php
-require_once '../dao/ClientDAO.php';
-require_once '../model/Client.php';
+require_once '../dao/ClientDAO.php'; 
+require_once '../model/Client.php';  
 
-$clientDAO = new ClientDAO();
+$clientDAO = new ClientDAO(); 
 
-// Vérifie si on a reçu l'id du client
+
+
+// Vérifie si on a reçu l'id du client en paramètre
 if (!isset($_GET['id'])) {
-    die("Aucun client spécifié !");
+    echo '<script> alert ("j ai pas l id du client") </script>';
+    header('Location: ../index.php');
 }
 
-$id = (int)$_GET['id'];
+$id = (int)$_GET['id']; // mettre l'id en int dans $id
 
-// Récupère le client
+// recup la liste des clients
 $lesClients = $clientDAO->afficherTous();
+
+// On cherche le client de l'id récupéré
+$i = 0;
 $client = null;
-foreach ($lesClients as $c) {
-    if ($c->getId() === $id) {
-        $client = $c;
-        break;
+
+// Tant qu'on est dans le tableau ET qu'on n'a pas trouvé le client
+while ($i < count($lesClients) && $client === null) {
+
+    if ($lesClients[$i]->getId() === $id) {
+        $client = $lesClients[$i];
     }
+
+    $i++;
 }
 
+// Si aucun client trouvé, message d’erreur
 if (!$client) {
-    die("Client introuvable !");
+    echo '<script> alert ("Client introuvable") </script>';
+    header('Location: ../index.php');
+
 }
 
-// Si le formulaire est soumis
+// Si le formulaire est fait
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // on met à jour l'objet client avec les nouvelles valeurs
     $client->setNom($_POST['nom']);
     $client->setEmail($_POST['email']);
     $client->setTelephone($_POST['telephone']);
@@ -34,10 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $client->setAdresseCp($_POST['adresse_cp']);
     $client->setAdresseVille($_POST['adresse_ville']);
 
+    // on enregistre les modifications en BDD
     $clientDAO->update($client);
 
-    header('Location: ListeClients.php'); // retourne à la liste
-    exit;
+    // redirection vers la liste après modif
+    header('Location: ListeClients.php');
+
 }
 ?>
 
@@ -50,9 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Modifier Client</h1>
+
+    <!-- bouton retour liste -->
     <a href="Afficher_Clients.php"><button>Retour à la liste</button></a>
 
+    <!-- formulaire pré-rempli avec les infos du client -->
     <form method="POST">
+
         <label>Nom :</label>
         <input type="text" name="nom" value="<?= htmlspecialchars($client->getNom()) ?>" required><br>
 
@@ -71,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Ville :</label>
         <input type="text" name="adresse_ville" value="<?= htmlspecialchars($client->getAdresseVille()) ?>"><br>
 
+        <!-- bouton d’envoi pour valider la modif -->
         <button type="submit">Modifier</button>
     </form>
 </body>
