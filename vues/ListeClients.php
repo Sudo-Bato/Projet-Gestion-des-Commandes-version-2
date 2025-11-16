@@ -1,6 +1,6 @@
 <?php 
 
-include '../dao/ClientDAO.php'
+include '../dao/ClientDAO.php';
 
 ?>
 
@@ -17,13 +17,19 @@ include '../dao/ClientDAO.php'
     <h1>Gestion des Clients</h1>
 
     <div id="top-section">
+
+        <!-- bouton pour revenir a l'accueil -->
         <a href="../index.php"><button>Retour à l'acceuil</button></a>
+
+        <!-- bouton pour aller au formulaire d'ajout -->
         <a href="./Ajout_Client.php"><button>Ajouter un Client</button></a>
+
     </div>
 
     <div id="tableau">
         <table>
             <tr>
+                <!-- en-têtes du tableau -->
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Email</th>
@@ -35,10 +41,13 @@ include '../dao/ClientDAO.php'
             </tr>
 
             <?php
+                // créer le DAO pr recup les clients
                 $clientDAO = new ClientDAO();
+
+                // recup tous les clients sous forme d'un tableau d'objets
                 $lesClients = $clientDAO->afficherTous();
 
-
+                // parcourir la liste et afficher chaque client dans le tableau HTML
                 foreach ($lesClients as $unClient) {
                     echo "<tr>";
                     echo "<td>" . $unClient->getId() . "</td>";
@@ -48,16 +57,17 @@ include '../dao/ClientDAO.php'
                     echo "<td>" . $unClient->getAdresseRue() . "</td>";
                     echo "<td>" . $unClient->getAdresseCp() . "</td>";
                     echo "<td>" . $unClient->getAdresseVille() . "</td>";
+
+                    // boutons modifier et supprimer
+                    // et renvoyer vers la page pour avec l'id du client
                     echo "<td>
-                            <a href='Modifier_Client.php?id=" . $unClient->getId() . "'><button>Modifier</button></a>
+                            <a href='Modifier_Client.php?id=" . $unClient->getId() . "'><button>Modifier</button></a> 
                             <a href='../supprimerClient.php?id=" . $unClient->getId() . "'><button>Supprimer</button></a>
                         </td>";
+
                     echo "</tr>";
                 }
-
-                ?>
-
-
+            ?>
         </table>
     </div>
        
