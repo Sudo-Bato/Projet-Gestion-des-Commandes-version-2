@@ -106,6 +106,29 @@ class ClientDAO {
         $req->execute();
     }
 
+    // Fonction pour récupérer UN seul client par son ID
+    public function getById($id): ?Client {
+        $sql = "SELECT * FROM clients WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$id]);
+        $laLigne = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$laLigne) {
+            return null;
+        }
+
+        $client = new Client();
+        $client->setId($laLigne['id']);
+        $client->setNom($laLigne['nom']);
+        $client->setEmail($laLigne['email']);
+        $client->setTelephone($laLigne['telephone']);
+        $client->setAdresseRue($laLigne['adresse_rue']);
+        $client->setAdresseCp($laLigne['adresse_cp']);
+        $client->setAdresseVille($laLigne['adresse_ville']);
+
+        return $client;
+    }
+
 
 }
 ?>
