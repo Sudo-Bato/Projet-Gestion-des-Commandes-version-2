@@ -10,7 +10,7 @@
     <div>
         <a href="./vues/ListeClients.php"><button>Gérer les Clients</button></a>
         <a href="./vues/ListeProduits.php"><button>Gérer les Produits</button></a>
-        <a href=""><button>Gérer les Commandes</button></a>
+        <a href="./vues/ListeCommande.php"><button>Gérer les Commandes</button></a>
     </div>
 </body>
 </html>
