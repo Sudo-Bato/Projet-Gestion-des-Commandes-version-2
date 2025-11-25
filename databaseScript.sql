@@ -54,5 +54,10 @@ ALTER TABLE utilisateurs ADD COLUMN role ENUM('admin', 'utilisateur') DEFAULT 'u
 
 -- Insertion du premier admin dans la base de donnée
 
-INSERT INTO utilisateurs (login, mot_de_passe, role)
-VALUES ('admin', '$2y$10$8mwix6D..h4fpWWX.rv6.c7ZO6zBfzlo1pmqsxv6JstEDgVGHAK.', 'admin');
+INSERT INTO utilisateurs (id, login, mot_de_passe, role)
+VALUES (
+    1,
+    'admin',
+    '$2y$12$60KL2F38LAxX/f8ePOiMYevvMmbVL23qZNofH3qE9jGH73vCC6ISW',
+    'admin'
+);

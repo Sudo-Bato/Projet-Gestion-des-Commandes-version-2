@@ -1,5 +1,12 @@
 <?php 
 
+// Si l'utilisateur n'est PAS connecté (pas d'id dans la session)
+if (!isset($_SESSION['user_id'])) {
+    // On le redirige vers le login
+    header('Location: ../login.php'); 
+    exit();
+}
+
 include '../dao/ClientDAO.php';
 
 ?>
