@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+// Si l'utilisateur n'est PAS connecté (pas d'id dans la session)
+if (!isset($_SESSION['user_id'])) {
+    // On le redirige vers le login
+    header('Location: ../login.php'); 
+    exit();
+}
+
+
 // Chargement des DAO nécessaires
 require_once '../dao/CommandeDAO.php';
 require_once '../dao/ClientDAO.php';
