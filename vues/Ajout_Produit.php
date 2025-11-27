@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Si l'utilisateur n'est PAS connecté (pas d'id dans la session)
 if (!isset($_SESSION['user_id'])) {
