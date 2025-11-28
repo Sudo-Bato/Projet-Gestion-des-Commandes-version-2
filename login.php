@@ -35,22 +35,22 @@ if (isset($_POST['valider'])) {
     <title>Connexion</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column;">
+<body class="login-page">
 
     <h1>Connexion</h1>
 
     <?php if ($message): ?>
-        <p style="color: red; font-weight:bold;"><?= $message ?></p>
+        <p class="error-msg"><?= $message ?></p>
     <?php endif; ?>
 
-    <form method="POST" style="border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
-        <div style="margin-bottom: 10px;">
-            <label>Login :</label><br>
+    <form method="POST">
+        <div>
+            <label>Login :</label>
             <input type="text" name="login" required placeholder="Votre login">
         </div>
 
-        <div style="margin-bottom: 10px;">
-            <label>Mot de passe :</label><br>
+        <div>
+            <label>Mot de passe :</label>
             <input type="password" name="password" required placeholder="Votre mot de passe">
         </div>
 

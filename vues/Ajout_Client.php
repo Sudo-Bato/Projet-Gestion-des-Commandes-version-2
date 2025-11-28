@@ -37,6 +37,10 @@ if (isset($_POST['ajouter'])) {
 }
 ?>
 
+<head>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
 <!-- formulaire pour ajouter un client -->
 <form method="POST" action="">
 

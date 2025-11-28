@@ -1,40 +1,197 @@
+/* --- RESET & GLOBAL --- */
+:root {
+    --primary-color: #007bff; /* Bleu principal */
+    --primary-hover: #0056b3;
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --white: #ffffff;
+    --border-color: #ccc;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* --- BOUTONS --- */
+button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Boutons spécifiques (Action supprimer, annuler...) */
+.btn-danger {
+    background-color: var(--danger-color);
+}
+.btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+}
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* --- NAVIGATION & TOP SECTIONS --- */
+#top-section, .nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* --- TABLEAUX --- */
+#tableau {
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+}
+
 table {
-  border-collapse: collapse;
-  border: 2px solid rgb(140 140 140);
-  font-family: sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+    border-collapse: collapse;
+    width: 90%;
+    max-width: 1200px;
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-caption {
-  caption-side: bottom;
-  padding: 10px;
-  font-weight: bold;
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
 }
 
-thead,
-tfoot {
-  background-color: rgb(228 240 245);
+th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
-th,
-td {
-  border: 1px solid rgb(160 160 160);
-  padding: 8px 10px;
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-td:last-of-type {
-  text-align: center;
+tr:hover {
+    background-color: #e9ecef;
 }
 
-tbody > tr:nth-of-type(even) {
-  background-color: rgb(237 238 242);
+td:last-child {
+    text-align: center; /* Pour les boutons d'action */
+    white-space: nowrap;
 }
 
-tfoot th {
-  text-align: right;
+/* --- FORMULAIRES --- */
+form {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 0 auto; /* Centrer le formulaire */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-tfoot td {
-  font-weight: bold;
+/* Style spécifique pour le formulaire de login qui doit être centré sur la page */
+body.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Important pour que le padding ne casse pas la largeur */
+}
+
+input[type="submit"], button[type="submit"] {
+    background-color: var(--success-color);
+    width: 100%;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* --- SPÉCIFIQUE : AJOUT COMMANDE --- */
+.container-produits {
+    border-top: 2px solid #eee;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.ligne-produit {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Petit champ quantité */
+.input-qte {
+    width: 80px !important; 
+}
+
+/* --- SPÉCIFIQUE : MODIFIER COMMANDE --- */
+.info-box {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.error-msg {
+    color: var(--danger-color);
+    font-weight: bold;
+    text-align: center;
 }

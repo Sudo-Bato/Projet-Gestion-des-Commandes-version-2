@@ -67,7 +67,7 @@ $client = $clientDAO->getById($commande->getClientId());
     <a href="ListeCommande.php"><button>Retour</button></a>
 
     <!-- Bloc affichant les infos de la commande -->
-    <div style="margin-top: 20px; border: 1px solid #ccc; padding: 20px;">
+    <div class="info-box">
 
         <!-- Informations client -->
         <p>

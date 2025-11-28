@@ -17,10 +17,11 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Bienvenue dans la gestion des commandes</h1>
-    <div>
+    <div class="nav-buttons">
         <a href="./vues/ListeClients.php"><button>Gérer les Clients</button></a>
         <a href="./vues/ListeProduits.php"><button>Gérer les Produits</button></a>
         <a href="./vues/ListeCommande.php"><button>Gérer les Commandes</button></a>

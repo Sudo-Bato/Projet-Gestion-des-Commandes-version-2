@@ -77,29 +77,6 @@ if (isset($_POST['valider_commande'])) {
     <!-- Feuille de style générale -->
     <link rel="stylesheet" href="../style.css">
 
-    <!-- Styles spécifiques à cette page -->
-    <style>
-        .ligne-produit { 
-            margin-bottom: 10px; 
-            border-bottom: 1px solid #ddd; 
-            padding-bottom: 10px; 
-        }
-        .btn-add { 
-            background-color: #28a745; 
-            color: white; 
-            border: none; 
-            padding: 5px 10px; 
-            cursor: pointer; 
-        }
-        .btn-remove { 
-            background-color: #dc3545; 
-            color: white; 
-            border: none; 
-            padding: 5px 10px; 
-            cursor: pointer; 
-            margin-left: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -149,7 +126,7 @@ if (isset($_POST['valider_commande'])) {
                 </select>
 
                 <!-- Champ quantité -->
-                <input type="number" name="quantite[]" placeholder="Quantité" min="1" required style="width: 80px;">
+                <input type="number" name="quantite[]" class="input-qte" placeholder="Quantité" min="1" required>
             </div>
         </div>
         
